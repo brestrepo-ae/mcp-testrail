@@ -18,6 +18,11 @@ if (
 
 // Correct URL format: https://example.testrail.com/index.php?/
 const url = process.env.TESTRAIL_URL;
+
+if (!url.startsWith("https://")) {
+	throw new Error("TESTRAIL_URL must use HTTPS to protect credentials");
+}
+
 const baseURL = url.endsWith("/index.php?/")
 	? url
 	: url.endsWith("/")
